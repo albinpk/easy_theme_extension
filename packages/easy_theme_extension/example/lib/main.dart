@@ -4,10 +4,15 @@ import 'package:flutter/material.dart';
 part 'main.g.dart';
 
 @easyTheme
-abstract class _MyTheme {
+abstract class _AppColors {
   Color? get primary;
   Color? get secondary;
+}
+
+@easyTheme
+abstract class _MyTheme {
   EdgeInsets get padding;
+  LinearGradient? get gradient;
 }
 
 void main() {

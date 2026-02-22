@@ -22,8 +22,11 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
     if (element case final ClassElement element
         when element.isAbstract && element.isPrivate) {
       // final meta = annotation.parse(options);
-      final generated = Library((libraryBuilder) {
-        libraryBuilder.body.addAll([_buildExtension(element)]);
+      final generated = Library((l) {
+        l.body.addAll([
+          _buildClass(element),
+          _buildContextExtension(element),
+        ]);
       });
 
       final emitter = DartEmitter(
@@ -40,10 +43,10 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
     return null;
   }
 
-  Class _buildExtension(ClassElement element) {
+  Class _buildClass(ClassElement element) {
+    final className = element.name!.substring(1);
     final props = element.fields.where((e) => e.isOriginGetterSetter).toList();
     return Class((c) {
-      final className = element.name!.substring(1);
       c
         // class
         ..name = className
@@ -134,6 +137,25 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
         ])
       //
       ;
+    });
+  }
+
+  Extension _buildContextExtension(ClassElement element) {
+    final className = element.name!.substring(1);
+    return Extension((e) {
+      e
+        ..name = '${className}BuildContextExtension'
+        ..on = const Reference('BuildContext')
+        ..methods.add(
+          Method((f) {
+            f
+              ..name = className[0].toLowerCase() + className.substring(1)
+              ..returns = Reference(className)
+              ..type = .getter
+              ..lambda = true
+              ..body = Code('Theme.of(this).extension<$className>()!');
+          }),
+        );
     });
   }
 }
