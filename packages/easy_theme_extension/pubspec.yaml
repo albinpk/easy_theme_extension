@@ -1,0 +1,14 @@
+name: easy_theme_extension
+description: A starting point for Dart libraries or applications.
+version: 0.0.1-dev.1
+
+environment:
+  sdk: ^3.11.0
+
+resolution: workspace
+
+dependencies:
+  meta: ^1.17.0
+
+dev_dependencies:
+  test: ^1.25.6
