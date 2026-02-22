@@ -9,26 +9,26 @@ part of 'main.dart';
 
 @immutable
 class AppColors extends ThemeExtension<AppColors> implements _AppColors {
-  const AppColors({required this.primary, required this.secondary});
+  const AppColors({required this.primary, required this.textColor});
 
   @override
-  final Color? primary;
+  final Color primary;
 
   @override
-  final Color? secondary;
+  final Color textColor;
 
   @override
-  AppColors copyWith({Color? primary, Color? secondary}) => AppColors(
+  AppColors copyWith({Color? primary, Color? textColor}) => AppColors(
     primary: primary ?? this.primary,
-    secondary: secondary ?? this.secondary,
+    textColor: textColor ?? this.textColor,
   );
 
   @override
   AppColors lerp(AppColors? other, double t) {
     if (other is! AppColors) return this;
     return AppColors(
-      primary: Color.lerp(primary, other.primary, t),
-      secondary: Color.lerp(secondary, other.secondary, t),
+      primary: Color.lerp(primary, other.primary, t)!,
+      textColor: Color.lerp(textColor, other.textColor, t)!,
     );
   }
 }
@@ -45,7 +45,12 @@ class MyTheme extends ThemeExtension<MyTheme> implements _MyTheme {
   final EdgeInsets padding;
 
   @override
-  final LinearGradient? gradient;
+  final LinearGradient gradient;
+
+  static const $default = MyTheme(
+    padding: const .all(4),
+    gradient: const .new(colors: [Colors.blue, Colors.cyan]),
+  );
 
   @override
   MyTheme copyWith({EdgeInsets? padding, LinearGradient? gradient}) => MyTheme(
@@ -58,7 +63,7 @@ class MyTheme extends ThemeExtension<MyTheme> implements _MyTheme {
     if (other is! MyTheme) return this;
     return MyTheme(
       padding: EdgeInsets.lerp(padding, other.padding, t)!,
-      gradient: LinearGradient.lerp(gradient, other.gradient, t),
+      gradient: LinearGradient.lerp(gradient, other.gradient, t)!,
     );
   }
 }

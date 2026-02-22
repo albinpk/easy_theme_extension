@@ -4,3 +4,6 @@ analyzer:
   errors:
     document_ignores: ignore
     public_member_api_docs: ignore
+
+formatter:
+  trailing_commas: preserve

@@ -1,5 +1,7 @@
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
+import 'package:analyzer/src/dart/ast/ast.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
@@ -14,17 +16,18 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
   final BuilderOptions options;
 
   @override
-  String? generateForAnnotatedElement(
+  Future<String?> generateForAnnotatedElement(
     Element element,
     ConstantReader annotation,
     BuildStep buildStep,
-  ) {
+  ) async {
     if (element case final ClassElement element
         when element.isAbstract && element.isPrivate) {
       // final meta = annotation.parse(options);
+      final classCode = await _buildClass(element, buildStep);
       final generated = Library((l) {
         l.body.addAll([
-          _buildClass(element),
+          classCode,
           _buildContextExtension(element),
         ]);
       });
@@ -43,9 +46,31 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
     return null;
   }
 
-  Class _buildClass(ClassElement element) {
+  Future<Class> _buildClass(ClassElement element, BuildStep buildStep) async {
     final className = element.name!.substring(1);
-    final props = element.fields.where((e) => e.isOriginGetterSetter).toList();
+    final props = element.getters;
+
+    // Related to the static const field with default values
+    final hasDefaultStaticConst = props.every(
+      (e) => e.returnType.isNullable || !e.isAbstract,
+    );
+    final defaultKeyValues = <String>[];
+    for (final p in props) {
+      if (await buildStep.resolver.astNodeFor(p.firstFragment)
+          case MethodDeclaration(:final body)) {
+        if (body case final ExpressionFunctionBody exp) {
+          defaultKeyValues.add('${p.name}: ${exp.expression.toSource()}');
+        } else if (body is EmptyFunctionBody) {
+          defaultKeyValues.add('${p.name}: null');
+        } else {
+          throw Exception(
+            'Unsupported body type: ${body.runtimeType}\n '
+            '"${body.toSource()}"',
+          );
+        }
+      }
+    }
+
     return Class((c) {
       c
         // class
@@ -72,17 +97,30 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
           }),
         )
         // fields
-        ..fields.addAll(
-          props.map((e) {
+        ..fields.addAll([
+          // instance fields
+          ...props.map((e) {
             return Field((f) {
               f
                 ..name = e.name
                 ..modifier = .final$
-                ..type = Reference(e.type.toString())
+                ..type = Reference(e.returnType.toString())
                 ..annotations.add(const CodeExpression(Code('override')));
             });
           }),
-        )
+
+          // default static constant instance
+          if (hasDefaultStaticConst)
+            Field((f) {
+              f
+                ..name = r'$default'
+                ..modifier = .constant
+                ..static = true
+                ..assignment = Code(
+                  "$className(${defaultKeyValues.join(',')})",
+                );
+            }),
+        ])
         ..methods.addAll([
           // copyWith
           Method((m) {
@@ -95,7 +133,7 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
                   return Parameter((p) {
                     p
                       ..name = e.name!
-                      ..type = Reference(e.type.nullable)
+                      ..type = Reference(e.returnType.nullable)
                       ..named = true;
                   });
                 }),
@@ -129,14 +167,10 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
               ..body = Code('''
                 if (other is! $className) return this;
                 return $className(${props.map((e) {
-                return '${e.name}: ${e.type.nonNull}.lerp(${e.name}, other.${e.name}, t)${e.type.isNullable ? '' : '!'}';
-              }).join(',')});''')
-            //
-            ;
+                return '${e.name}: ${e.returnType.nonNull}.lerp(${e.name}, other.${e.name}, t)${e.returnType.isNullable ? '' : '!'}';
+              }).join(',')});''');
           }),
-        ])
-      //
-      ;
+        ]);
     });
   }
 

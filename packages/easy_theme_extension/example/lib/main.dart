@@ -5,29 +5,46 @@ part 'main.g.dart';
 
 @easyTheme
 abstract class _AppColors {
-  Color? get primary;
-  Color? get secondary;
+  Color get primary;
+  Color get textColor;
 }
 
 @easyTheme
 abstract class _MyTheme {
-  EdgeInsets get padding;
-  LinearGradient? get gradient;
+  EdgeInsets get padding => const .all(4);
+  LinearGradient get gradient => const .new(colors: [Colors.blue, Colors.cyan]);
 }
 
-void main() {
-  runApp(const MainApp());
-}
+void main() => runApp(const MainApp());
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        extensions: const [
+          MyTheme.$default, // instance with default values
+          AppColors(
+            primary: Colors.blue,
+            textColor: Colors.lightBlue,
+          ),
+        ],
+      ),
       home: Scaffold(
         body: Center(
-          child: Text('Hello World!'),
+          child: Builder(
+            builder: (context) {
+              return Text(
+                'Hello World!',
+                style: TextStyle(
+                  // context extension
+                  color: context.appColors.textColor,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
