@@ -1,5 +1,5 @@
 name: easy_theme_extension_builder
-description: A starting point for Dart libraries or applications.
+description: Builder package for easy_theme_extension.
 version: 0.0.1-dev.2
 
 repository: https://github.com/albinpk/easy_theme_extension
