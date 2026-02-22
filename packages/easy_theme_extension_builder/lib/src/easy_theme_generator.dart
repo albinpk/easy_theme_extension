@@ -21,7 +21,7 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
   ) {
     if (element case final ClassElement element
         when element.isAbstract && element.isPrivate) {
-      final meta = annotation.parse(options);
+      // final meta = annotation.parse(options);
       final generated = Library((libraryBuilder) {
         libraryBuilder.body.addAll([_buildExtension(element)]);
       });
@@ -147,9 +147,9 @@ extension on DartType {
   String get nullable => isNullable ? toString() : '${toString()}?';
 }
 
-extension on ConstantReader {
-  EasyTheme parse(BuilderOptions options) {
-    // final map = options.config;
-    return const EasyTheme();
-  }
-}
+// extension on ConstantReader {
+//   EasyTheme parse(BuilderOptions options) {
+//     // final map = options.config;
+//     return const EasyTheme();
+//   }
+// }
