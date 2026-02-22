@@ -2,6 +2,9 @@ name: easy_theme_extension
 description: A starting point for Dart libraries or applications.
 version: 0.0.1-dev.1
 
+repository: https://github.com/albinpk/easy_theme_extension
+issue_tracker: https://github.com/albinpk/easy_theme_extension/issues
+
 environment:
   sdk: ^3.11.0
 
