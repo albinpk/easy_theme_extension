@@ -47,7 +47,7 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
   }
 
   Future<Class> _buildClass(ClassElement element, BuildStep buildStep) async {
-    final className = element.name!.substring(1);
+    final className = element.publicName;
     final props = element.getters;
 
     // Related to the static const field with default values
@@ -76,6 +76,7 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
         // class
         ..name = className
         ..extend = Reference('ThemeExtension<$className>')
+        ..mixins.add(const Reference('Diagnosticable'))
         ..implements.add(Reference('_$className'))
         ..annotations.add(const CodeExpression(Code('immutable')))
         // constructor
@@ -170,12 +171,32 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
                 return '${e.name}: ${e.returnType.nonNull}.lerp(${e.name}, other.${e.name}, t)${e.returnType.isNullable ? '' : '!'}';
               }).join(',')});''');
           }),
+
+          // debugFillProperties
+          Method.returnsVoid((m) {
+            m
+              ..name = 'debugFillProperties'
+              ..annotations.add(const CodeExpression(Code('override')))
+              ..requiredParameters.add(
+                Parameter((p) {
+                  p
+                    ..name = 'properties'
+                    ..type = const Reference('DiagnosticPropertiesBuilder');
+                }),
+              )
+              ..body = Code('''
+                super.debugFillProperties(properties);
+                properties..
+                ${props.map((e) {
+                return "add(DiagnosticsProperty<${e.returnType.nonNull}>('${e.name}', ${e.name}))";
+              }).join('..')};''');
+          }),
         ]);
     });
   }
 
   Extension _buildContextExtension(ClassElement element) {
-    final className = element.name!.substring(1);
+    final className = element.publicName;
     return Extension((e) {
       e
         ..name = '${className}BuildContextExtension'
@@ -201,6 +222,10 @@ extension on DartType {
       isNullable ? toString().substring(0, toString().length - 1) : toString();
 
   String get nullable => isNullable ? toString() : '${toString()}?';
+}
+
+extension on ClassElement {
+  String get publicName => name!.substring(1);
 }
 
 // extension on ConstantReader {

@@ -8,7 +8,9 @@ part of 'main.dart';
 // **************************************************************************
 
 @immutable
-class AppColors extends ThemeExtension<AppColors> implements _AppColors {
+class AppColors extends ThemeExtension<AppColors>
+    with Diagnosticable
+    implements _AppColors {
   const AppColors({required this.primary, required this.textColor});
 
   @override
@@ -31,6 +33,14 @@ class AppColors extends ThemeExtension<AppColors> implements _AppColors {
       textColor: Color.lerp(textColor, other.textColor, t)!,
     );
   }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty<Color>('primary', primary))
+      ..add(DiagnosticsProperty<Color>('textColor', textColor));
+  }
 }
 
 extension AppColorsBuildContextExtension on BuildContext {
@@ -38,7 +48,9 @@ extension AppColorsBuildContextExtension on BuildContext {
 }
 
 @immutable
-class MyTheme extends ThemeExtension<MyTheme> implements _MyTheme {
+class MyTheme extends ThemeExtension<MyTheme>
+    with Diagnosticable
+    implements _MyTheme {
   const MyTheme({required this.padding, required this.gradient});
 
   @override
@@ -65,6 +77,14 @@ class MyTheme extends ThemeExtension<MyTheme> implements _MyTheme {
       padding: EdgeInsets.lerp(padding, other.padding, t)!,
       gradient: LinearGradient.lerp(gradient, other.gradient, t)!,
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty<EdgeInsets>('padding', padding))
+      ..add(DiagnosticsProperty<LinearGradient>('gradient', gradient));
   }
 }
 
