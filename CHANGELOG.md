@@ -15,6 +15,36 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`easy_theme_extension` - `v0.0.1-dev.5`](#easy_theme_extension---v001-dev5)
+ - [`easy_theme_extension_builder` - `v0.0.1-dev.5`](#easy_theme_extension_builder---v001-dev5)
+
+---
+
+#### `easy_theme_extension` - `v0.0.1-dev.5`
+
+ - **FEAT**: add `Diagnosticable` mixin and `debugFillProperties` to generated theme extensions.
+ - **FEAT**: generate a static `$default` constant for theme extensions.
+ - **FEAT**: generate extension getter on `BuildContext`.
+
+#### `easy_theme_extension_builder` - `v0.0.1-dev.5`
+
+ - **FEAT**: add `Diagnosticable` mixin and `debugFillProperties` to generated theme extensions.
+ - **FEAT**: generate a static `$default` constant for theme extensions.
+ - **FEAT**: generate extension getter on `BuildContext`.
+
+
+## 2026-02-22
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`easy_theme_extension` - `v0.0.1-dev.4`](#easy_theme_extension---v001-dev4)
  - [`easy_theme_extension_builder` - `v0.0.1-dev.4`](#easy_theme_extension_builder---v001-dev4)
 
