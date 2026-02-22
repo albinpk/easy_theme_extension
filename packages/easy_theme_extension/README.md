@@ -51,3 +51,16 @@ final theme = ThemeData(
 
 final myTheme = Theme.of(context).extension<MyTheme>()!;
 ```
+
+---
+
+## Contributing
+
+Contributions, issues, and suggestions are welcome.
+Open an issue or submit a pull request on [GitHub](https://github.com/albinpk/easy_theme_extension)
+
+Package page on [pub.dev](https://pub.dev/packages/easy_theme_extension)
+
+## License
+
+Released under the [MIT License](https://github.com/albinpk/easy_theme_extension/blob/main/packages/easy_theme_extension/LICENSE)
