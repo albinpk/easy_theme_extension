@@ -15,6 +15,34 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`easy_theme_extension` - `v0.0.1-dev.4`](#easy_theme_extension---v001-dev4)
+ - [`easy_theme_extension_builder` - `v0.0.1-dev.4`](#easy_theme_extension_builder---v001-dev4)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `easy_theme_extension_builder` - `v0.0.1-dev.4`
+
+---
+
+#### `easy_theme_extension` - `v0.0.1-dev.4`
+
+ - **DOCS**: update readme with github link and license.
+
+
+## 2026-02-22
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`easy_theme_extension` - `v0.0.1-dev.3`](#easy_theme_extension---v001-dev3)
  - [`easy_theme_extension_builder` - `v0.0.1-dev.3`](#easy_theme_extension_builder---v001-dev3)
 

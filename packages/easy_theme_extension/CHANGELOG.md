@@ -1,3 +1,7 @@
+## 0.0.1-dev.4
+
+ - **DOCS**: update readme with github link and license.
+
 ## 0.0.1-dev.3
 
  - **DOCS**: update package description and readme files.
