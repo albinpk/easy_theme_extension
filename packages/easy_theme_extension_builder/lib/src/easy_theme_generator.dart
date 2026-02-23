@@ -171,6 +171,20 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
               }).join(',')});''');
           }),
 
+          // toString // check Diagnosticable.toString
+          /*
+          Method((m) {
+            m
+              ..name = 'toString'
+              ..annotations.add(const CodeExpression(Code('override')))
+              ..returns = const Reference('String')
+              ..body = Code('''
+                return "${props.map((e) {
+                return 'x';
+              }).join(',')}";''');
+          }),
+          */
+
           // == operator
           Method((m) {
             m

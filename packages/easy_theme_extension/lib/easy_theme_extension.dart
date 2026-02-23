@@ -1,1 +1,1 @@
-export 'src/easy_theme.dart';
+export 'src/annotations.dart';
