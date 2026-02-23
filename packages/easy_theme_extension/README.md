@@ -49,7 +49,7 @@ final theme = ThemeData(
   ],
 );
 
-final myTheme = Theme.of(context).extension<MyTheme>()!;
+final myTheme = context.myTheme;
 ```
 
 ---
