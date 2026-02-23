@@ -35,6 +35,18 @@ class AppColors extends ThemeExtension<AppColors>
   }
 
   @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    return other is AppColors &&
+        other.primary == primary &&
+        other.textColor == textColor;
+  }
+
+  @override
+  int get hashCode => Object.hashAll([primary, textColor]);
+
+  @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
@@ -78,6 +90,18 @@ class MyTheme extends ThemeExtension<MyTheme>
       gradient: LinearGradient.lerp(gradient, other.gradient, t)!,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    return other is MyTheme &&
+        other.padding == padding &&
+        other.gradient == gradient;
+  }
+
+  @override
+  int get hashCode => Object.hashAll([padding, gradient]);
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

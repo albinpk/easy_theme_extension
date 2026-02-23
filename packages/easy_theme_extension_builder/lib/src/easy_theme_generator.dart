@@ -1,7 +1,6 @@
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
-import 'package:analyzer/src/dart/ast/ast.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
@@ -170,6 +169,43 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
                 return $className(${props.map((e) {
                 return '${e.name}: ${e.returnType.nonNull}.lerp(${e.name}, other.${e.name}, t)${e.returnType.isNullable ? '' : '!'}';
               }).join(',')});''');
+          }),
+
+          // == operator
+          Method((m) {
+            m
+              ..name = 'operator =='
+              ..annotations.add(const CodeExpression(Code('override')))
+              ..returns = const Reference('bool')
+              ..requiredParameters.add(
+                Parameter((p) {
+                  p
+                    ..name = 'other'
+                    ..type = const Reference('Object');
+                }),
+              )
+              ..body = Code('''
+                if (identical(this, other)) return true;
+                if (other.runtimeType != runtimeType) return false;
+                return other is $className &&
+                ${props.map((e) {
+                return "other.${e.name} == ${e.name}";
+              }).join('&&')};''');
+          }),
+
+          // hashCode
+          Method((m) {
+            m
+              ..name = 'hashCode'
+              ..type = .getter
+              ..annotations.add(const CodeExpression(Code('override')))
+              ..returns = const Reference('int')
+              ..lambda = true
+              ..body = Code('''
+                Object.hashAll([
+                ${props.map((e) {
+                return "${e.name}";
+              }).join(', ')}])''');
           }),
 
           // debugFillProperties
