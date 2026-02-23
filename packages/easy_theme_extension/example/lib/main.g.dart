@@ -113,5 +113,5 @@ class MyTheme extends ThemeExtension<MyTheme>
 }
 
 extension MyThemeBuildContextExtension on BuildContext {
-  MyTheme get myTheme => Theme.of(this).extension<MyTheme>()!;
+  MyTheme get theme => Theme.of(this).extension<MyTheme>()!;
 }

@@ -22,12 +22,17 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
   ) async {
     if (element case final ClassElement element
         when element.isAbstract && element.isPrivate) {
-      // final meta = annotation.parse(options);
-      final classCode = await _buildClass(element, buildStep);
+      final meta = annotation.parse(options);
+      final classCode = await _buildClass(
+        element: element,
+        buildStep: buildStep,
+        meta: meta,
+      );
       final generated = Library((l) {
         l.body.addAll([
           classCode,
-          _buildContextExtension(element),
+          if (meta.contextExtension ?? true)
+            _buildContextExtension(element, meta.contextExtensionName),
         ]);
       });
 
@@ -45,27 +50,33 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
     return null;
   }
 
-  Future<Class> _buildClass(ClassElement element, BuildStep buildStep) async {
+  Future<Class> _buildClass({
+    required ClassElement element,
+    required BuildStep buildStep,
+    required EasyTheme meta,
+  }) async {
     final className = element.publicName;
     final props = element.getters;
 
     // Related to the static const field with default values
-    final hasDefaultStaticConst = props.every(
-      (e) => e.returnType.isNullable || !e.isAbstract,
-    );
+    final hasDefaultStaticConst =
+        (meta.defaultStaticInstance ?? true) &&
+        props.every((e) => e.returnType.isNullable || !e.isAbstract);
     final defaultKeyValues = <String>[];
-    for (final p in props) {
-      if (await buildStep.resolver.astNodeFor(p.firstFragment)
-          case MethodDeclaration(:final body)) {
-        if (body case final ExpressionFunctionBody exp) {
-          defaultKeyValues.add('${p.name}: ${exp.expression.toSource()}');
-        } else if (body is EmptyFunctionBody) {
-          defaultKeyValues.add('${p.name}: null');
-        } else {
-          throw Exception(
-            'Unsupported body type: ${body.runtimeType}\n '
-            '"${body.toSource()}"',
-          );
+    if (hasDefaultStaticConst) {
+      for (final p in props) {
+        if (await buildStep.resolver.astNodeFor(p.firstFragment)
+            case MethodDeclaration(:final body)) {
+          if (body case final ExpressionFunctionBody exp) {
+            defaultKeyValues.add('${p.name}: ${exp.expression.toSource()}');
+          } else if (body is EmptyFunctionBody) {
+            defaultKeyValues.add('${p.name}: null');
+          } else {
+            throw Exception(
+              'Unsupported body type: ${body.runtimeType}\n '
+              '"${body.toSource()}"',
+            );
+          }
         }
       }
     }
@@ -74,8 +85,11 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
       c
         // class
         ..name = className
-        ..extend = Reference('ThemeExtension<$className>')
-        ..mixins.add(const Reference('Diagnosticable'))
+        ..extend = Reference('ThemeExtension<$className>');
+      if (meta.diagnosticable ?? true) {
+        c.mixins.add(const Reference('Diagnosticable'));
+      }
+      c
         ..implements.add(Reference('_$className'))
         ..annotations.add(const CodeExpression(Code('immutable')))
         // constructor
@@ -184,68 +198,70 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
               }).join(',')}";''');
           }),
           */
-
-          // == operator
-          Method((m) {
-            m
-              ..name = 'operator =='
-              ..annotations.add(const CodeExpression(Code('override')))
-              ..returns = const Reference('bool')
-              ..requiredParameters.add(
-                Parameter((p) {
-                  p
-                    ..name = 'other'
-                    ..type = const Reference('Object');
-                }),
-              )
-              ..body = Code('''
+          if (meta.equals ?? true) ...[
+            // == operator
+            Method((m) {
+              m
+                ..name = 'operator =='
+                ..annotations.add(const CodeExpression(Code('override')))
+                ..returns = const Reference('bool')
+                ..requiredParameters.add(
+                  Parameter((p) {
+                    p
+                      ..name = 'other'
+                      ..type = const Reference('Object');
+                  }),
+                )
+                ..body = Code('''
                 if (identical(this, other)) return true;
                 if (other.runtimeType != runtimeType) return false;
                 return other is $className &&
                 ${props.map((e) {
-                return "other.${e.name} == ${e.name}";
-              }).join('&&')};''');
-          }),
+                  return "other.${e.name} == ${e.name}";
+                }).join('&&')};''');
+            }),
 
-          // hashCode
-          Method((m) {
-            m
-              ..name = 'hashCode'
-              ..type = .getter
-              ..annotations.add(const CodeExpression(Code('override')))
-              ..returns = const Reference('int')
-              ..lambda = true
-              ..body = Code('''
+            // hashCode
+            Method((m) {
+              m
+                ..name = 'hashCode'
+                ..type = .getter
+                ..annotations.add(const CodeExpression(Code('override')))
+                ..returns = const Reference('int')
+                ..lambda = true
+                ..body = Code('''
                 Object.hashAll([
                 ${props.map((e) {
-                return "${e.name}";
-              }).join(', ')}])''');
-          }),
+                  return "${e.name}";
+                }).join(', ')}])''');
+            }),
+          ],
 
-          // debugFillProperties
-          Method.returnsVoid((m) {
-            m
-              ..name = 'debugFillProperties'
-              ..annotations.add(const CodeExpression(Code('override')))
-              ..requiredParameters.add(
-                Parameter((p) {
-                  p
-                    ..name = 'properties'
-                    ..type = const Reference('DiagnosticPropertiesBuilder');
-                }),
-              )
-              ..body = Code('''
+          if (meta.diagnosticable ?? true)
+            // debugFillProperties
+            Method.returnsVoid((m) {
+              m
+                ..name = 'debugFillProperties'
+                ..annotations.add(const CodeExpression(Code('override')))
+                ..requiredParameters.add(
+                  Parameter((p) {
+                    p
+                      ..name = 'properties'
+                      ..type = const Reference('DiagnosticPropertiesBuilder');
+                  }),
+                )
+                ..body = Code('''
                 super.debugFillProperties(properties);
                 properties..
                 ${props.map((e) {
-                return "add(DiagnosticsProperty<${e.returnType.nonNull}>('${e.name}', ${e.name}))";
-              }).join('..')};''');
-          }),
+                  return "add(DiagnosticsProperty<${e.returnType.nonNull}>('${e.name}', ${e.name}))";
+                }).join('..')};''');
+            }),
         ]);
     });
   }
 
-  Extension _buildContextExtension(ClassElement element) {
+  Extension _buildContextExtension(ClassElement element, String? name) {
     final className = element.publicName;
     return Extension((e) {
       e
@@ -254,7 +270,8 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
         ..methods.add(
           Method((f) {
             f
-              ..name = className[0].toLowerCase() + className.substring(1)
+              ..name =
+                  name ?? className[0].toLowerCase() + className.substring(1)
               ..returns = Reference(className)
               ..type = .getter
               ..lambda = true
@@ -278,9 +295,25 @@ extension on ClassElement {
   String get publicName => name!.substring(1);
 }
 
-// extension on ConstantReader {
-//   EasyTheme parse(BuilderOptions options) {
-//     // final map = options.config;
-//     return const EasyTheme();
-//   }
-// }
+extension on ConstantReader {
+  EasyTheme parse(BuilderOptions options) {
+    final map = options.config;
+    return EasyTheme(
+      diagnosticable:
+          objectValue.getField('diagnosticable')?.toBoolValue() ??
+          map['diagnosticable'] as bool?,
+      equals:
+          objectValue.getField('equals')?.toBoolValue() ??
+          map['equals'] as bool?,
+      contextExtension:
+          objectValue.getField('contextExtension')?.toBoolValue() ??
+          map['contextExtension'] as bool?,
+      contextExtensionName: objectValue
+          .getField('contextExtensionName')
+          ?.toStringValue(),
+      defaultStaticInstance:
+          objectValue.getField('defaultStaticInstance')?.toBoolValue() ??
+          map['defaultStaticInstance'] as bool?,
+    );
+  }
+}

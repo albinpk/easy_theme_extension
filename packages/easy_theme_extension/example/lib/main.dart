@@ -10,7 +10,7 @@ abstract class _AppColors {
   Color get textColor;
 }
 
-@easyTheme
+@EasyTheme(contextExtensionName: 'theme')
 abstract class _MyTheme {
   EdgeInsets get padding => const .all(4);
   LinearGradient get gradient => const .new(colors: [Colors.blue, Colors.cyan]);

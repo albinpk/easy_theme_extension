@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      easy_theme_extension_builder:
+        options:
+          diagnosticable: true
+          equals: true
+          contextExtension: true
+          defaultStaticInstance: true
