@@ -1,6 +1,6 @@
 name: easy_theme_extension_builder
 description: Builder package for easy_theme_extension.
-version: 0.0.1-dev.5
+version: 0.0.1-dev.6
 
 repository: https://github.com/albinpk/easy_theme_extension
 issue_tracker: https://github.com/albinpk/easy_theme_extension/issues
@@ -16,7 +16,7 @@ dependencies:
   built_collection: ^5.1.1
   code_builder: ^4.11.1
   dart_style: ^3.1.5
-  easy_theme_extension: ^0.0.1-dev.5
+  easy_theme_extension: ^0.0.1-dev.6
   source_gen: ^4.2.0
 
 dev_dependencies:

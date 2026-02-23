@@ -1,3 +1,9 @@
+## 0.0.1-dev.6
+
+ - **REFACTOR**: rename annotations file.
+ - **FEAT**: customization options for `EasyTheme` annotation: `contextExtension`, `contextExtensionName`, `defaultStaticInstance`, `diagnosticable`, and `equals`.
+ - **FEAT**: generate `==` and `hashCode` for theme extensions.
+
 ## 0.0.1-dev.5
 
  - **FEAT**: add `Diagnosticable` mixin and `debugFillProperties` to generated theme extensions.

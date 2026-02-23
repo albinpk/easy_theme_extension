@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-02-23
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`easy_theme_extension` - `v0.0.1-dev.6`](#easy_theme_extension---v001-dev6)
+ - [`easy_theme_extension_builder` - `v0.0.1-dev.6`](#easy_theme_extension_builder---v001-dev6)
+
+---
+
+#### `easy_theme_extension` - `v0.0.1-dev.6`
+
+ - **REFACTOR**: rename annotations file.
+ - **FEAT**: customization options for `EasyTheme` annotation: `contextExtension`, `contextExtensionName`, `defaultStaticInstance`, `diagnosticable`, and `equals`.
+ - **FEAT**: generate `==` and `hashCode` for theme extensions.
+
+#### `easy_theme_extension_builder` - `v0.0.1-dev.6`
+
+ - **REFACTOR**: rename annotations file.
+ - **FEAT**: customization options for `EasyTheme` annotation: `contextExtension`, `contextExtensionName`, `defaultStaticInstance`, `diagnosticable`, and `equals`.
+ - **FEAT**: generate `==` and `hashCode` for theme extensions.
+
+
 ## 2026-02-22
 
 ### Changes
