@@ -160,6 +160,12 @@ context.myColors.secondary;
 
 ---
 
+## Supported Types
+
+See the example app for the full list of supported types and current limitations [here](https://github.com/albinpk/easy_theme_extension/blob/main/packages/easy_theme_extension/example/lib/all_types.dart).
+
+---
+
 ## Contributing
 
 Contributions, issues, and suggestions are welcome.
