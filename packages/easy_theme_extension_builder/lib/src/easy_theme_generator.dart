@@ -181,7 +181,25 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
               ..body = Code('''
                 if (other is! $className) return this;
                 return $className(${props.map((e) {
-                return '${e.name}: ${e.returnType.nonNull}.lerp(${e.name}, other.${e.name}, t)${e.returnType.isNullable ? '' : '!'}';
+                return '${e.name}: ${switch (e.returnType.nonNull) {
+                  'double' => 'lerpDouble(${e.name}, other.${e.name}, t)${e.returnType.isNullable ? '' : '!'}',
+                  _ => () {
+                    if (e.returnType.element?.name == 'WidgetStateProperty') {
+                      if (e.returnType case ParameterizedType(:final typeArguments)) {
+                        if (typeArguments.isEmpty) throw Exception('WidgetStateProperty without type parameters is not supported');
+                        final t = typeArguments.first;
+                        return '''
+                          WidgetStateProperty.lerp<$t>(
+                            ${e.name},
+                            other.${e.name},
+                            t,
+                            ${t.nonNull}.lerp,
+                          )${e.returnType.isNullable ? '' : '!'}''';
+                      }
+                    }
+                    return '${e.returnType.nonNull}.lerp(${e.name}, other.${e.name}, t)${e.returnType.isNullable ? '' : '!'}';
+                  }(),
+                }}';
               }).join(',')});''');
           }),
 
