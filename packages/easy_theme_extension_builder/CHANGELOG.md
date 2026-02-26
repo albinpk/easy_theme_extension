@@ -1,3 +1,7 @@
+## 0.0.1-dev.7
+
+ - **FEAT**: supports `double` and `WidgetStateProperty<T?>` types.
+
 ## 0.0.1-dev.6
 
  - **REFACTOR**: rename annotations file.

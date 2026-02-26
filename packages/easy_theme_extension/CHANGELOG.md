@@ -1,3 +1,10 @@
+## 0.0.1-dev.7
+
+ - **DOCS**: add documentation for `@easyTheme` annotation options in the README.
+ - **DOCS**: list all available type in the example app.
+ - **DOCS**: update usage section in readme with generated code.
+ - **DOCS**: update `README.md` with context extension.
+
 ## 0.0.1-dev.6
 
  - **REFACTOR**: rename annotations file.

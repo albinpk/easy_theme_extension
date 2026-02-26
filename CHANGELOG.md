@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-02-26
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`easy_theme_extension` - `v0.0.1-dev.7`](#easy_theme_extension---v001-dev7)
+ - [`easy_theme_extension_builder` - `v0.0.1-dev.7`](#easy_theme_extension_builder---v001-dev7)
+
+---
+
+#### `easy_theme_extension` - `v0.0.1-dev.7`
+
+ - **DOCS**: add documentation for `@easyTheme` annotation options in the README.
+ - **DOCS**: list all available type in the example app.
+ - **DOCS**: update usage section in readme with generated code.
+ - **DOCS**: update `README.md` with context extension.
+
+#### `easy_theme_extension_builder` - `v0.0.1-dev.7`
+
+ - **FEAT**: supports `double` and `WidgetStateProperty<T?>` types.
+
+
 ## 2026-02-23
 
 ### Changes
