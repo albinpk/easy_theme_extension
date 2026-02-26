@@ -135,6 +135,7 @@ extension MyColorsBuildContextExtension on BuildContext {
   MyColors get myColors => Theme.of(this).extension<MyColors>()!;
 }
 ```
+
 </details>
 
 ### 3. Use the generated extension
@@ -157,6 +158,23 @@ return MaterialApp(
 // Context extension
 context.myColors.secondary;
 ```
+
+---
+
+## Annotation Options
+
+```dart
+@EasyTheme(contextExtensionName: 'color')
+abstract class _MyColors { ... }
+```
+
+| Option                  | Type      | Default       | Description                                                       |
+| ----------------------- | --------- | ------------- | ----------------------------------------------------------------- |
+| `contextExtension`      | `bool?`   | `true`        | Generates an extension on `BuildContext` for accessing the theme. |
+| `contextExtensionName`  | `String?` | `<className>` | Custom name for the generated `BuildContext` accessor.            |
+| `defaultStaticInstance` | `bool?`   | `true`        | Generates a static default instance (`$default`).                 |
+| `diagnosticable`        | `bool?`   | `true`        | Mixes in `Diagnosticable` on the generated class.                 |
+| `equals`                | `bool?`   | `true`        | Generates `==` and `hashCode` implementations.                    |
 
 ---
 
