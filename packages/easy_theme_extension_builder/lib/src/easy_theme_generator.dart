@@ -130,7 +130,9 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
             Field((f) {
               f
                 ..name = r'$default'
-                ..modifier = .constant
+                ..modifier = meta.defaultStaticInstanceAsConst == false
+                    ? .final$
+                    : .constant
                 ..static = true
                 ..assignment = Code(
                   "$className(${defaultKeyValues.join(',')})",
@@ -334,6 +336,9 @@ extension on ConstantReader {
       defaultStaticInstance:
           objectValue.getField('defaultStaticInstance')?.toBoolValue() ??
           map['defaultStaticInstance'] as bool?,
+      defaultStaticInstanceAsConst:
+          objectValue.getField('defaultStaticInstanceAsConst')?.toBoolValue() ??
+          map['defaultStaticInstanceAsConst'] as bool?,
     );
   }
 }

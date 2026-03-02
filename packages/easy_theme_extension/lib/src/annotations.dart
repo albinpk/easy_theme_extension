@@ -7,6 +7,7 @@ class EasyTheme {
     this.contextExtension,
     this.contextExtensionName,
     this.defaultStaticInstance,
+    this.defaultStaticInstanceAsConst,
     this.diagnosticable,
     this.equals,
   });
@@ -20,6 +21,9 @@ class EasyTheme {
   /// Whether to generate a static instance of the theme
   /// with default values (as `$default`).
   final bool? defaultStaticInstance;
+
+  /// Whether the generated static instance should be `const`.
+  final bool? defaultStaticInstanceAsConst;
 
   /// Whether the generated class should mixin `Diagnosticable`.
   final bool? diagnosticable;

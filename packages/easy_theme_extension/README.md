@@ -168,13 +168,14 @@ context.myColors.secondary;
 abstract class _MyColors { ... }
 ```
 
-| Option                  | Type      | Default       | Description                                                       |
-| ----------------------- | --------- | ------------- | ----------------------------------------------------------------- |
-| `contextExtension`      | `bool?`   | `true`        | Generates an extension on `BuildContext` for accessing the theme. |
-| `contextExtensionName`  | `String?` | `<className>` | Custom name for the generated `BuildContext` accessor.            |
-| `defaultStaticInstance` | `bool?`   | `true`        | Generates a static default instance (`$default`).                 |
-| `diagnosticable`        | `bool?`   | `true`        | Mixes in `Diagnosticable` on the generated class.                 |
-| `equals`                | `bool?`   | `true`        | Generates `==` and `hashCode` implementations.                    |
+| Option                         | Type      | Default       | Description                                                       |
+| ------------------------------ | --------- | ------------- | ----------------------------------------------------------------- |
+| `contextExtension`             | `bool?`   | `true`        | Generates an extension on `BuildContext` for accessing the theme. |
+| `contextExtensionName`         | `String?` | `<className>` | Custom name for the generated `BuildContext` accessor.            |
+| `defaultStaticInstance`        | `bool?`   | `true`        | Generates a static default instance (`$default`).                 |
+| `defaultStaticInstanceAsConst` | `bool?`   | `true`        | Generates a static default instance (`$default`) as const.        |
+| `diagnosticable`               | `bool?`   | `true`        | Mixes in `Diagnosticable` on the generated class.                 |
+| `equals`                       | `bool?`   | `true`        | Generates `==` and `hashCode` implementations.                    |
 
 ---
 

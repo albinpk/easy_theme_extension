@@ -7,3 +7,4 @@ targets:
           equals: true
           contextExtension: true
           defaultStaticInstance: true
+          defaultStaticInstanceAsConst: true
