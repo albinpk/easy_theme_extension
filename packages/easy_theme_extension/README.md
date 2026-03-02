@@ -22,7 +22,7 @@ flutter pub add \
 ### 1. Define your theme contract
 
 ```dart
-part 'my_colors.g.dart';
+part 'my_colors.theme.g.dart';
 
 @easyTheme
 abstract class _MyColors {
@@ -41,7 +41,7 @@ dart run build_runner build
 ```
 
 <details>
-<summary>my_colors.g.dart</summary>
+<summary>my_colors.theme.g.dart</summary>
 
 ```dart
 part of 'my_colors.dart';
