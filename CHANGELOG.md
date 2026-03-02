@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-03-02
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`easy_theme_extension` - `v0.0.1-dev.8`](#easy_theme_extension---v001-dev8)
+ - [`easy_theme_extension_builder` - `v0.0.1-dev.8`](#easy_theme_extension_builder---v001-dev8)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `easy_theme_extension` - `v0.0.1-dev.8`
+
+ - **FEAT**: add `defaultStaticInstanceAsConst` option to control `const` generation for the static `$default` instance.
+ - **FEAT**: Include `ignore_for_file: unnecessary_const` in generated files.
+ - **DOCS**: update generated file name.
+ - **BREAKING** **FIX**: update generated file extension from `.g.dart` to `.theme.g.dart`.
+
+#### `easy_theme_extension_builder` - `v0.0.1-dev.8`
+
+ - **FIX**: adjust dependency constraints.
+ - **FEAT**: add `defaultStaticInstanceAsConst` option to control `const` generation for the static `$default` instance.
+ - **FEAT**: Include `ignore_for_file: unnecessary_const` in generated files.
+ - **BREAKING** **FIX**: update generated file extension from `.g.dart` to `.theme.g.dart`.
+
+
 ## 2026-02-26
 
 ### Changes

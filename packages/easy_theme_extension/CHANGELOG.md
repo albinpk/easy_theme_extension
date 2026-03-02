@@ -1,3 +1,12 @@
+## 0.0.1-dev.8
+
+> Note: This release has breaking changes.
+
+ - **FEAT**: add `defaultStaticInstanceAsConst` option to control `const` generation for the static `$default` instance.
+ - **FEAT**: Include `ignore_for_file: unnecessary_const` in generated files.
+ - **DOCS**: update generated file name.
+ - **BREAKING** **FIX**: update generated file extension from `.g.dart` to `.theme.g.dart`.
+
 ## 0.0.1-dev.7
 
  - **DOCS**: add documentation for `@easyTheme` annotation options in the README.

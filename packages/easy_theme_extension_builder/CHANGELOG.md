@@ -1,3 +1,12 @@
+## 0.0.1-dev.8
+
+> Note: This release has breaking changes.
+
+ - **FIX**: adjust dependency constraints.
+ - **FEAT**: add `defaultStaticInstanceAsConst` option to control `const` generation for the static `$default` instance.
+ - **FEAT**: Include `ignore_for_file: unnecessary_const` in generated files.
+ - **BREAKING** **FIX**: update generated file extension from `.g.dart` to `.theme.g.dart`.
+
 ## 0.0.1-dev.7
 
  - **FEAT**: supports `double` and `WidgetStateProperty<T?>` types.
