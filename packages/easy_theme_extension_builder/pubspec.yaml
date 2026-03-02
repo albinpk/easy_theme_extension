@@ -4,6 +4,7 @@ version: 0.0.1-dev.8
 
 repository: https://github.com/albinpk/easy_theme_extension
 issue_tracker: https://github.com/albinpk/easy_theme_extension/issues
+publish_to: none
 
 environment:
   sdk: ^3.11.0
@@ -11,11 +12,17 @@ environment:
 resolution: workspace
 
 dependencies:
-  analyzer: ^10.0.0
+  analyzer: ">=8.0.0 <11.0.0"
   build: ^4.0.0
   code_builder: ^4.0.0
   dart_style: ^3.0.0
-  easy_theme_extension: ^0.0.1-dev.8
+  # easy_theme_extension: ^0.0.1-dev.8
+  easy_theme_extension:
+    git:
+      url: https://github.com/albinpk/easy_theme_extension.git
+      path: packages/easy_theme_extension
+      ref: dev/analyzer-v8
+
   source_gen: ^4.0.0
 
 dev_dependencies:
