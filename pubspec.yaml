@@ -3,7 +3,7 @@ name: easy_theme_extension_workspace
 environment:
   sdk: ^3.11.0
 
-workspace: 
+workspace:
   - packages/*
   - packages/*/example
 

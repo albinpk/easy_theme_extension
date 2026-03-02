@@ -4,7 +4,7 @@ import 'package:easy_theme_extension/easy_theme_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-part 'all_types.g.dart';
+part 'all_types.theme.g.dart';
 
 @easyTheme
 abstract class _AllTypes {

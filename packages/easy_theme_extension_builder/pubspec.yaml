@@ -7,7 +7,7 @@ issue_tracker: https://github.com/albinpk/easy_theme_extension/issues
 
 environment:
   sdk: ^3.11.0
-  
+
 resolution: workspace
 
 dependencies:
@@ -21,7 +21,7 @@ dependencies:
 
 dev_dependencies:
   test: ^1.25.6
-  
+
 topics:
   - theming
   - theme-extension

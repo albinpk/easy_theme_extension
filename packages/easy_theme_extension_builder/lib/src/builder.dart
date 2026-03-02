@@ -5,6 +5,6 @@ import 'package:source_gen/source_gen.dart';
 /// Builder entry point.
 Builder easyThemeBuilder(BuilderOptions options) => PartBuilder(
   [EasyThemeGenerator(options: options)],
-  '.g.dart',
+  '.theme.g.dart',
   options: options,
 );

@@ -2,7 +2,7 @@ import 'package:easy_theme_extension/easy_theme_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-part 'main.g.dart';
+part 'main.theme.g.dart';
 
 @easyTheme
 abstract class _AppColors {
