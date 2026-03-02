@@ -7,6 +7,8 @@ part of 'my_colors.dart';
 // EasyThemeGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_const
+
 @immutable
 class MyColors extends ThemeExtension<MyColors>
     with Diagnosticable

@@ -7,6 +7,8 @@ part of 'all_types.dart';
 // EasyThemeGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_const
+
 @immutable
 class AllTypes extends ThemeExtension<AllTypes>
     with Diagnosticable

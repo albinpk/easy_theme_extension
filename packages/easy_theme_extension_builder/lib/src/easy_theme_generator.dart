@@ -29,11 +29,13 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
         meta: meta,
       );
       final generated = Library((l) {
-        l.body.addAll([
-          classCode,
-          if (meta.contextExtension ?? true)
-            _buildContextExtension(element, meta.contextExtensionName),
-        ]);
+        l
+          ..ignoreForFile.add('unnecessary_const')
+          ..body.addAll([
+            classCode,
+            if (meta.contextExtension ?? true)
+              _buildContextExtension(element, meta.contextExtensionName),
+          ]);
       });
 
       final emitter = DartEmitter(
