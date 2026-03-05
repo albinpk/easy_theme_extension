@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-03-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`easy_theme_extension_builder` - `v0.0.1-dev.9`](#easy_theme_extension_builder---v001-dev9)
+
+---
+
+#### `easy_theme_extension_builder` - `v0.0.1-dev.9`
+
+ - **FIX**: loosen constraints for analyzer, build, and source_gen.
+
+
 ## 2026-03-02
 
 ### Changes

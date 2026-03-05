@@ -1,3 +1,7 @@
+## 0.0.1-dev.9
+
+ - **FIX**: loosen constraints for analyzer, build, and source_gen.
+
 ## 0.0.1-dev.8
 
 > Note: This release has breaking changes.

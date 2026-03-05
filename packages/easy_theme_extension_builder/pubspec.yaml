@@ -1,6 +1,6 @@
 name: easy_theme_extension_builder
 description: Builder package for easy_theme_extension.
-version: 0.0.1-dev.8
+version: 0.0.1-dev.9
 
 repository: https://github.com/albinpk/easy_theme_extension
 issue_tracker: https://github.com/albinpk/easy_theme_extension/issues
