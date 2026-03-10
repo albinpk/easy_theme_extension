@@ -1139,6 +1139,7 @@ class AllTypes extends ThemeExtension<AllTypes>
 
   @override
   int get hashCode => Object.hashAll([
+    runtimeType,
     actionIconThemeData,
     alignment,
     alignmentDirectional,

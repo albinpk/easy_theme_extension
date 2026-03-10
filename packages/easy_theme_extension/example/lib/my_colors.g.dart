@@ -75,8 +75,14 @@ class MyColors extends ThemeExtension<MyColors>
   }
 
   @override
-  int get hashCode =>
-      Object.hashAll([primary, secondary, textBody, textTitle, textLabel]);
+  int get hashCode => Object.hash(
+    runtimeType,
+    primary,
+    secondary,
+    textBody,
+    textTitle,
+    textLabel,
+  );
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

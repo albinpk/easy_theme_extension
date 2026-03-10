@@ -45,7 +45,7 @@ class AppColors extends ThemeExtension<AppColors>
   }
 
   @override
-  int get hashCode => Object.hashAll([primary, textColor]);
+  int get hashCode => Object.hash(runtimeType, primary, textColor);
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
@@ -104,7 +104,7 @@ class MyTheme extends ThemeExtension<MyTheme>
   }
 
   @override
-  int get hashCode => Object.hashAll([padding, gradient]);
+  int get hashCode => Object.hash(runtimeType, padding, gradient);
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

@@ -253,12 +253,21 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
                 ..type = .getter
                 ..annotations.add(const CodeExpression(Code('override')))
                 ..returns = const Reference('int')
-                ..lambda = true
-                ..body = Code('''
+                ..lambda = true;
+              // use Object.hashAll if there are more than 19 fields
+              if (props.length > 19) {
+                m.body = Code('''
                 Object.hashAll([
-                ${props.map((e) {
-                  return "${e.name}";
-                }).join(', ')}])''');
+                  runtimeType,
+                  ${props.map((e) => e.name).join(', ')}
+                ])''');
+              } else {
+                m.body = Code('''
+                Object.hash(
+                  runtimeType,
+                  ${props.map((e) => e.name).join(', ')}
+                )''');
+              }
             }),
           ],
 
