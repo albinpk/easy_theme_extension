@@ -6,7 +6,7 @@ part of 'all_types.dart';
 // EasyThemeGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_const
+// ignore_for_file: unnecessary_const, unnecessary_non_null_assertion
 
 @immutable
 class AllTypes extends ThemeExtension<AllTypes>

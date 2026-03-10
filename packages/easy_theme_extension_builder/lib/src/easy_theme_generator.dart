@@ -30,7 +30,10 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
       );
       final generated = Library((l) {
         l
-          ..ignoreForFile.add('unnecessary_const')
+          ..ignoreForFile.addAll([
+            'unnecessary_const',
+            'unnecessary_non_null_assertion',
+          ])
           ..body.addAll([
             classCode,
             if (meta.contextExtension ?? true)

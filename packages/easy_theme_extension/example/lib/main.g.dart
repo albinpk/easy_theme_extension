@@ -6,7 +6,7 @@ part of 'main.dart';
 // EasyThemeGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_const
+// ignore_for_file: unnecessary_const, unnecessary_non_null_assertion
 
 @immutable
 class AppColors extends ThemeExtension<AppColors>
@@ -60,7 +60,7 @@ extension AppColorsBuildContextExtension on BuildContext {
   AppColors get appColors => Theme.of(this).extension<AppColors>()!;
 }
 
-// ignore_for_file: unnecessary_const
+// ignore_for_file: unnecessary_const, unnecessary_non_null_assertion
 
 @immutable
 class MyTheme extends ThemeExtension<MyTheme>

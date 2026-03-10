@@ -6,7 +6,7 @@ part of 'my_colors.dart';
 // EasyThemeGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_const
+// ignore_for_file: unnecessary_const, unnecessary_non_null_assertion
 
 @immutable
 class MyColors extends ThemeExtension<MyColors>
