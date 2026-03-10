@@ -2,6 +2,7 @@ builders:
   easy_theme_extension_builder:
     import: "package:easy_theme_extension_builder/easy_theme_extension_builder.dart"
     builder_factories: ["easyThemeBuilder"]
-    auto_apply: root_package
-    build_to: source
-    build_extensions: { ".dart": [".theme.g.dart"] }
+    applies_builders: ["source_gen|combining_builder"]
+    build_extensions: { ".dart": ["theme.g.part"] }
+    auto_apply: dependents
+    build_to: cache
