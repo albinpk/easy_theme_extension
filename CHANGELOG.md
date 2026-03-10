@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-03-10
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`easy_theme_extension` - `v0.0.1-dev.9`](#easy_theme_extension---v001-dev9)
+ - [`easy_theme_extension_builder` - `v0.0.1-dev.10`](#easy_theme_extension_builder---v001-dev10)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `easy_theme_extension` - `v0.0.1-dev.9`
+
+ - **REFACTOR**: improve generated hashCode based on number of fields.
+ - **FIX**: add `unnecessary_non_null_assertion` to the ignore list for generated files.
+ - **BREAKING** **REFACTOR**: switch to `SharedPartBuilder` for combined part file generation. Generated file will be `*.g.dart`.
+
+#### `easy_theme_extension_builder` - `v0.0.1-dev.10`
+
+ - **REFACTOR**: improve generated hashCode based on number of fields.
+ - **FIX**: add `unnecessary_non_null_assertion` to the ignore list for generated files.
+ - **BREAKING** **REFACTOR**: switch to `SharedPartBuilder` for combined part file generation. Generated file will be `*.g.dart`.
+
+
 ## 2026-03-05
 
 ### Changes

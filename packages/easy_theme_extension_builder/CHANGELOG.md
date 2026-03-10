@@ -1,3 +1,11 @@
+## 0.0.1-dev.10
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: improve generated hashCode based on number of fields.
+ - **FIX**: add `unnecessary_non_null_assertion` to the ignore list for generated files.
+ - **BREAKING** **REFACTOR**: switch to `SharedPartBuilder` for combined part file generation. Generated file will be `*.g.dart`.
+
 ## 0.0.1-dev.9
 
  - **FIX**: loosen constraints for analyzer, build, and source_gen.
