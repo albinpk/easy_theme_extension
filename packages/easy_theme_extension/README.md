@@ -161,6 +161,32 @@ context.myColors.secondary;
 
 ---
 
+## Default Instance
+
+If all fields provide values, the generator creates a static `$default` instance.
+
+```dart
+@easyTheme
+abstract class _AppColors {
+  Color get primary => Colors.blue;
+  Color get textColor => Colors.orange;
+}
+```
+
+You can use it directly when configuring the theme:
+
+```dart
+return MaterialApp(
+  theme: ThemeData(
+    extensions: const [
+      AppColors.$default, // instance with default values
+    ],
+  ),
+);
+```
+
+---
+
 ## Annotation Options
 
 ```dart
