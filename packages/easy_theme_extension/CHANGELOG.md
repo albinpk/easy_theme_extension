@@ -1,3 +1,7 @@
+## 0.1.0
+
+ - Initial stable release
+
 ## 0.0.1-dev.10
 
  - **DOCS**: add documentation for the generated `$default` instance and its usage.

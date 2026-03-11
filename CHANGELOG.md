@@ -15,6 +15,32 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`easy_theme_extension` - `v0.1.0`](#easy_theme_extension---v010)
+ - [`easy_theme_extension_builder` - `v0.1.0`](#easy_theme_extension_builder---v010)
+
+---
+
+#### `easy_theme_extension` - `v0.1.0`
+
+ - Initial stable release
+
+#### `easy_theme_extension_builder` - `v0.1.0`
+
+ - Initial stable release
+
+
+## 2026-03-11
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`easy_theme_extension` - `v0.0.1-dev.10`](#easy_theme_extension---v001-dev10)
  - [`easy_theme_extension_builder` - `v0.0.1-dev.11`](#easy_theme_extension_builder---v001-dev11)
 

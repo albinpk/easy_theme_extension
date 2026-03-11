@@ -1,3 +1,7 @@
+## 0.1.0
+
+ - Initial stable release
+
 ## 0.0.1-dev.11
 
  - Update a dependency to the latest release.
