@@ -12,6 +12,7 @@ class EasyThemeGenerator extends GeneratorForAnnotation<EasyTheme> {
   /// Generator for [EasyTheme] annotation.
   const EasyThemeGenerator({required this.options});
 
+  /// Builder options.
   final BuilderOptions options;
 
   @override
