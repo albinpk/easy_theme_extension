@@ -111,13 +111,14 @@ class MyColors extends ThemeExtension<MyColors> with Diagnosticable implements _
   }
 
   @override
-  int get hashCode => Object.hashAll([
+  int get hashCode => Object.hash(
+    runtimeType,
     primary,
     secondary,
     textBody,
     textTitle,
     textLabel,
-  ]);
+  );
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
