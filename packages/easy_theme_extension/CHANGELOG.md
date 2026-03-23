@@ -1,3 +1,7 @@
+## 0.1.0+1
+
+ - **DOCS**: add before and after images to the README for visual comparison.
+
 ## 0.1.0
 
  - Initial stable release
