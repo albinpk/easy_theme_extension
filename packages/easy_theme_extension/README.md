@@ -4,6 +4,10 @@ A zero-boilerplate generator for Flutter `ThemeExtension` classes.
 
 Define your theme as an annotated abstract class. The generator creates the full immutable implementation with constructor, fields, `copyWith`, `lerp` and more.
 
+| Before                                                                                                    | After                                                                                                   |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| ![before](https://raw.githubusercontent.com/albinpk/easy_theme_extension/refs/heads/main/docs/before.png) | ![after](https://raw.githubusercontent.com/albinpk/easy_theme_extension/refs/heads/main/docs/after.png) |
+
 ---
 
 ## Installation
