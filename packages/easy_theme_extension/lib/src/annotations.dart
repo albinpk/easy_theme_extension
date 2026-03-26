@@ -1,6 +1,18 @@
 import 'package:meta/meta_meta.dart';
 
 /// Annotation used to generate a theme extension.
+///
+/// eg: _`main.dart`_
+///
+/// ```dart
+/// part 'main.g.dart';
+///
+/// @easyTheme
+/// abstract class _AppColors {
+///   Color get primary;
+///   Color get textColor;
+/// }
+/// ```
 @Target({.classType})
 class EasyTheme {
   const EasyTheme({
