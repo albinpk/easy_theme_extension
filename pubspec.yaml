@@ -9,9 +9,8 @@ workspace:
 
 dev_dependencies:
   melos: ^7.4.0
-
-dependencies:
   very_good_analysis: ^10.2.0
 
 melos:
   sdkPath: .fvm/flutter_sdk
+  repository: https://github.com/albinpk/easy_theme_extension
